@@ -110,6 +110,42 @@ folium.Marker(
     tooltip="Berlin",
 ).add_to(m)
 
+folium.Marker(
+    location=[48.2688, 11.4675],
+    popup="<b>Dachau</b>",
+    tooltip="Dachau",
+).add_to(m)
+
+folium.Marker(
+    location=[50.1109, 8.6821],
+    popup="<b>Frankfurt</b>",
+    tooltip="Frankfurt",
+).add_to(m)
+
+folium.Marker(
+    location=[49.4077, 8.6908],
+    popup="<b>Heidelberg</b>",
+    tooltip="Heidelberg",
+).add_to(m)
+
+folium.Marker(
+    location=[48.8973, 9.1916],
+    popup="<b>Ludwigsburg</b>",
+    tooltip="Ludwigsburg",
+).add_to(m)
+
+folium.Marker(
+    location=[48.1372, 11.5761],
+    popup="<b>Munich</b>",
+    tooltip="Munich",
+).add_to(m)
+
+folium.Marker(
+    location=[48.7833, 9.1833],
+    popup="<b>Stuttgart</b>",
+    tooltip="Stuttgart",
+).add_to(m)
+
 
 # Iceland
 folium.Marker(
