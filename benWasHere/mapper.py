@@ -146,6 +146,11 @@ folium.Marker(
     tooltip="Stuttgart",
 ).add_to(m)
 
+folium.Marker(
+    location=[50.0826, 8.2493],
+    popup="<b>Wiesbaden</b>",
+    tooltip="Wiesbaden",
+).add_to(m)
 
 # Iceland
 folium.Marker(
@@ -360,6 +365,11 @@ with open("../benWasHere/map.html", 'r') as file:
 old_width_value = '.attr("width", 450)'  # The desired new width value
 new_width_value = '.attr("width", 0)'  # The existing width value
 html_content = html_content.replace(str(old_width_value), str(new_width_value))
+
+head_end_index = html_content.find('</head>')
+if head_end_index != -1:
+    title_tag = '<title>BenWasHere</title>\n'
+    html_content = html_content[:head_end_index] + title_tag + html_content[head_end_index:]
 
 # Save the modified HTML back to the file
 with open("../benWasHere/map.html", 'w') as file:
