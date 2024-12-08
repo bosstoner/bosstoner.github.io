@@ -26,6 +26,8 @@ h2 {
   font-size: 0.5em;
   line-height: 1.5;
   margin-bottom: 6em;
+  text-shadow: 
+  1px 1px 0px rgb(218, 11, 218);
 }
 
 a {
@@ -45,5 +47,6 @@ a:hover {
   color: #D3D3D3;
   font-size: 0.5em;
   line-height: 12;
-  text-shadow: none;
+  text-shadow: 
+  1px 1px 0px rgb(218, 11, 218);
 }
