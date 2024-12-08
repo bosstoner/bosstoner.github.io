@@ -17,19 +17,24 @@ h1 {
   color: deepblue;
   font-size: 2em;
   margin-bottom: 0.1em;
+  text-shadow: 
+  2px 2px 0px rgb(218, 11, 218);
 }
 
 h2 {
-  color: white;
+  color: #D3D3D3;
   font-size: 0.5em;
-  margin-bottom: 5em;
+  line-height: 1.5;
+  margin-bottom: 6em;
 }
 
 a {
-  color: white;
+  color: #00fefe;
   text-decoration: none;
   font-size: 0.8em;
-  line-height: 3.5;
+  line-height: 4;
+  text-shadow: 
+  2px 1px 0px rgb(218, 11, 218);
 }
 
 a:hover {
@@ -37,6 +42,8 @@ a:hover {
 }
 
 .github-link {
+  color: #D3D3D3;
   font-size: 0.5em;
-  line-height: 10;
+  line-height: 12;
+  text-shadow: none;
 }
