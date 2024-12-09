@@ -15,7 +15,12 @@ body {
 }
 
 h1 {
-  color: deepblue;
+  width: 80%;
+  margin: auto;
+  padding: 0.6em 0em;
+  padding-top: 0.8em;
+  background-color: #00fefe;
+  color: #0000ee;
   font-size: 2em;
   margin-bottom: 0.1em;
   text-shadow: 
@@ -26,16 +31,31 @@ h2 {
   color: #D3D3D3;
   font-size: 0.5em;
   line-height: 1.5;
-  margin-bottom: 6em;
+  margin-top: 1.5em;
+  margin-bottom: 8em;
   text-shadow: 
   1px 1px 0px rgb(218, 11, 218);
+}
+
+.link-container {
+  display: grid;
+  padding-left: 0.4em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 1em;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.link-container a {
+  justify-self: start;
 }
 
 a {
   color: #00fefe;
   text-decoration: none;
   font-size: 0.8em;
-  line-height: 4;
+  line-height: 2;
   text-shadow: 
   2px 1px 0px rgb(218, 11, 218);
 }
@@ -44,16 +64,36 @@ a:hover {
   text-decoration: underline;
 }
 
-.github-link {
-  color: #D3D3D3;
-  font-size: 0.5em;
-  line-height: 10;
+.right-column {
+  padding-left: 2em;
+}
+
+.signo-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0.5em;
+}
+
+.signo {
+  text-align: right;
+  background-color: #00fefe;
+  color: #0000ee;
+  padding-top: 0.1em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
   text-shadow: 
   1px 1px 0px rgb(218, 11, 218);
 }
 
-.film-comp-links {
-  display: flex;
-  justify-content: center;
-  gap: 1em; /* Adds spacing between links */
+.signo:hover {
+  text-decoration: none;
 }
+
+.github-link {
+  color: #D3D3D3;
+  font-size: 0.5em;
+  line-height: 14;
+  text-shadow: 
+  1px 1px 0px rgb(218, 11, 218);
+}
+
