@@ -17,12 +17,7 @@ body {
 h1 {
   width: 80%;
   margin: auto;
-  padding: 0.5em 0em;
-  padding-top: 0.7em;
-  background-color: #00fefe;
-  color: #0000ee;
   font-size: 2em;
-  margin-bottom: 0.1em;
   text-shadow: 
   2px 2px 0px rgb(218, 11, 218);
 }
@@ -31,7 +26,7 @@ h2 {
   color: #D3D3D3;
   font-size: 0.5em;
   line-height: 1.5;
-  margin-top: 1.5em;
+  margin-top: 0.5em;
   margin-bottom: 8em;
   text-shadow: 
   1px 1px 0px rgb(218, 11, 218);
