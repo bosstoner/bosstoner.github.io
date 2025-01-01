@@ -18,7 +18,7 @@ body {
 h1 {
   width: 80%;
   margin: auto;
-  font-size: 1.9em;
+  font-size: 2em;
   text-shadow: 
   2px 2px 0px rgb(218, 11, 218);
 }
@@ -91,4 +91,10 @@ a:hover {
   line-height: 15;
   text-shadow: 
   1px 1px 0px rgb(218, 11, 218);
+}
+
+@media screen and (max-width: 470px) {
+  h1 {
+    font-size: 1.8em;
+  }
 }
