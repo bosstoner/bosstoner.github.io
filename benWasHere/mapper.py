@@ -339,6 +339,18 @@ folium.Marker(
     tooltip="Istanbul",
 ).add_to(m)
 
+# United Kingdom
+folium.Marker(
+    location=[51.5073, -0.1277],
+    popup="<b>London</b>",
+    tooltip="London",
+).add_to(m)
+
+folium.Marker(
+    location=[50.8197, -1.0879],
+    popup="<b>Portsmouth</b>",
+    tooltip="Portsmouth",
+).add_to(m)
 
 # USA
 folium.Marker(
