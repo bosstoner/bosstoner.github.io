@@ -198,6 +198,14 @@ folium.Marker(
 ).add_to(m)
 
 
+# Montenegro
+folium.Marker(
+    location=[42.4304, 19.2594],
+    popup="<b>Podgorica</b>",
+    tooltip="Podgorica",
+).add_to(m)
+
+
 # Netherlands
 folium.Marker(
     location=[52.3676, 4.9041],
@@ -264,9 +272,17 @@ folium.Marker(
 ).add_to(m)
 
 folium.Marker(
-    location=[52.2297, 21.0122],
+    location=[52.2297, 21.2267],
     popup="<b>Warsaw</b>",
     tooltip="Warsaw",
+).add_to(m)
+
+
+# Romania
+folium.Marker(
+    location=[45.77537, 21.2257],
+    popup="<b>Timisoara</b>",
+    tooltip="Timisoara",
 ).add_to(m)
 
 
