@@ -342,6 +342,18 @@ folium.Marker(
 ).add_to(m)
 
 folium.Marker(
+    location=[46.0100, 8.9600],
+    popup="<b>Lugano</b>",
+    tooltip="Lugano",
+).add_to(m)
+
+folium.Marker(
+    location=[47.0504, 8.3063],
+    popup="<b>Luzern</b>",
+    tooltip="Luzern",
+).add_to(m)
+
+folium.Marker(
     location=[47.3769, 8.5417],
     popup="<b>Zürich</b>",
     tooltip="Zürich",
