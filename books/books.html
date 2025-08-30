@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Journal</title>
+
+  <!-- Montserrat font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gap:16px;
+      --cell-w:170px;
+      --item-h:230px;
+      --max-cols:6;
+    }
+
+    body{
+      margin:0;
+      font-family:'Montserrat', sans-serif;
+      background:#f7f7f7;
+      color:#111;
+      overflow-x:hidden;
+    }
+
+    /* ===== Header ===== */
+    header{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:1.5rem;
+    }
+    header h1{
+      margin:0 0 1rem 0;
+      font-size:2rem;
+      font-weight:800;
+      text-align:center;
+    }
+
+    /* ===== Carousel ===== */
+    .carousel{
+      display:flex;
+      align-items:center;
+      transition:transform .45s ease;
+      gap:3rem;
+      overflow:hidden;
+      justify-content:center;
+      width:100%;
+    }
+    .year-item{
+      font-size:1.25rem;
+      font-weight:600;
+      opacity:.4;
+      transform:scale(.85);
+      cursor:pointer;
+      transition:transform .25s ease, opacity .25s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .year-item.active{
+      font-weight:800;
+      opacity:1;
+      transform:scale(1.25);
+    }
+
+    /* ===== Collage ===== */
+    .collage-wrapper{
+      min-height:calc(100vh - 150px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1rem;
+    }
+    .collage{
+      display:grid;
+      gap:var(--gap);
+      justify-content:center;
+      margin:auto;
+    }
+    .cover{
+      width:var(--cell-w);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .cover img{
+      height:var(--item-h);
+      width:auto;
+      max-width:100%;
+      object-fit:contain;
+      box-shadow:0 4px 10px rgba(0,0,0,.15);
+      transition:transform .2s ease;
+    }
+    .cover img:hover{ transform:scale(1.04); }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 600px){
+      :root{
+        --gap:24px;
+        --cell-w:240px;
+        --item-h:330px;
+      }
+      .collage{ 
+        grid-template-columns: repeat(1, var(--cell-w)) !important; 
+        padding:1.5rem;
+      }
+      .year-item{ font-size:1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Book Journal</h1>
+    <div class="carousel" id="carousel"></div>
+  </header>
+
+  <div class="collage-wrapper">
+    <div class="collage" id="collage"></div>
+  </div>
+
+  <script>
+    const MAX_COLS = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--max-cols')) || 6;
+    const CELL_W   = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cell-w')) || 170;
+    const GAP      = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap')) || 16;
+
+    const photoData = {
+      "2025": ["images/10.jpg", "images/9.jpg", "images/8.jpg", "images/7.jpg", "images/6.jpg", "images/5.jpg", "images/4.jpg", "images/3.jpg", "images/2.jpg", "images/1.jpg"],
+      "2026": ["images/2026_1.jpg","images/2026_2.jpg","images/2026_3.jpg","images/2026_4.jpg"],
+      "2027": ["images/2027_1.jpg","images/2027_2.jpg","images/2027_3.jpg"]
+    };
+
+    const carousel = document.getElementById('carousel');
+    const collage  = document.getElementById('collage');
+    const years    = Object.keys(photoData).sort();
+    let activeIndex = 0;
+
+    function renderCarousel(){
+      carousel.innerHTML = '';
+      years.forEach((year, idx) => {
+        const el = document.createElement('div');
+        el.textContent = year;
+        el.className = 'year-item' + (idx === activeIndex ? ' active' : '');
+        el.onclick = () => {
+          activeIndex = idx;
+          centerActiveYear();
+          loadCollage(years[activeIndex]);
+        };
+        carousel.appendChild(el);
+      });
+      centerActiveYear();
+    }
+
+    function centerActiveYear(){
+      const active = carousel.children[activeIndex];
+      if(!active) return;
+      const offset = (active.offsetLeft + active.offsetWidth/2) - (carousel.offsetWidth/2);
+      carousel.style.transform = `translateX(${-offset}px)`;
+      [...carousel.children].forEach((c,i)=>c.classList.toggle('active', i===activeIndex));
+    }
+
+    function computeCols(){
+      if (window.innerWidth <= 600) return 1;
+      const wrapper = collage.parentElement;
+      const available = wrapper.clientWidth;
+      let cols = Math.floor((available + GAP) / (CELL_W + GAP));
+      cols = Math.max(1, Math.min(MAX_COLS, cols));
+      return cols;
+    }
+    function applyCols(cols){
+      collage.style.gridTemplateColumns = `repeat(${cols}, var(--cell-w))`;
+    }
+    function layoutGrid(){ applyCols(computeCols()); }
+
+    function loadCollage(year){
+      collage.innerHTML = '';
+      for (const src of photoData[year]){
+        const cell = document.createElement('div');
+        cell.className = 'cover';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'book cover';
+        cell.appendChild(img);
+        collage.appendChild(cell);
+      }
+      requestAnimationFrame(layoutGrid);
+    }
+
+    renderCarousel();
+    loadCollage(years[activeIndex]);
+    window.addEventListener('resize', () => {
+      centerActiveYear();
+      layoutGrid();
+    });
+  </script>
+</body>
+</html>
