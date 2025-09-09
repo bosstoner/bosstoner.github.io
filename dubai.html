@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>✈️ DUBAI TRIP COUNTDOWN ✨</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      cursor: url('https://upload.wikimedia.org/wikipedia/commons/8/8e/Cursor_hand2.png'), auto;
+    }
+    body {
+      background:
+        url('https://gifcities.org/assets/underconstruction/construction_bar.gif') repeat,
+        repeating-conic-gradient(from 0deg, #eef 0 20deg, #ddeeff 20deg 40deg, #ccddff 40deg 60deg, #eef 60deg 80deg);
+      color: #222;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    }
+
+    .page { max-width: 920px; margin: 0 auto; padding: 8px; }
+
+    .bordered {
+      border: 8px ridge #88e;
+      box-shadow: 0 0 0 6px #f8f, 0 0 40px #8ff inset, 0 0 24px #f8f;
+      background: linear-gradient(45deg, rgba(255,255,255,.85), rgba(230,240,255,.85));
+    }
+
+    .header { text-align: center; padding: 12px 8px; position: relative; }
+
+    .blink { animation: blinky 0.8s step-start infinite; }
+    @keyframes blinky { 50% { opacity: 0; } }
+
+    .rainbow {
+      background-image: linear-gradient(90deg, #f33, #fa0, #ff0, #0f0, #0ff, #00f, #a0f);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      filter: drop-shadow(0 0 4px #fff);
+      animation: hue 6s linear infinite;
+    }
+    @keyframes hue { to { filter: hue-rotate(360deg) drop-shadow(0 0 4px #fff);} }
+
+    marquee {
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding: 4px 0;
+      background: repeating-linear-gradient(45deg, #ffd, #ffd 10px, #fcf 10px, #fcf 20px);
+      color: #333;
+      border-top: 4px dashed #8ff;
+      border-bottom: 4px dashed #8ff;
+      text-transform: uppercase;
+    }
+
+    .content { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 12px; }
+
+    .card {
+      border: 6px groove #ccf;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 0 16px #8ff inset, 0 0 16px #f8f;
+    }
+
+    .counter {
+      font-size: clamp(22px, 6vw, 64px);
+      line-height: 1.1;
+      font-weight: 900;
+      text-shadow: 2px 2px 0 #fff, 4px 4px 0 #8ff, -4px -4px 0 #f8f;
+    }
+
+    .units { font-size: clamp(12px, 2.4vw, 18px); letter-spacing: 2px; opacity: 0.9; }
+
+    .ticker {
+      display: inline-block;
+      padding: 6px 10px;
+      margin-top: 6px;
+      border: 4px ridge #ccf;
+      background: #f9f9ff;
+      color: #222;
+    }
+
+    .footer { text-align: center; padding: 8px 0 18px; font-size: 12px; color: #444; }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin-top: 8px; }
+    .badge { border: 3px outset #88e; background: #eef; padding: 6px 10px; font-size: 12px; white-space: nowrap; }
+
+    .stars-left, .stars-right {
+      position: absolute; top: 4px; bottom: 4px; width: 64px; display: grid; place-items: center; gap: 8px;
+    }
+    .stars-left { left: 6px; }
+    .stars-right { right: 6px; }
+
+    .gif { width: 48px; height: 48px; image-rendering: pixelated; }
+    @media (max-width: 720px) { .stars-left, .stars-right { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="page bordered">
+    <marquee scrollamount="10" behavior="alternate">🌴 ✈️ ✨ WELCOME TO THE DUBAI TRIP COUNTDOWN ✨ ✈️ 🌴</marquee>
+
+    <header class="header">
+      <div class="stars-left">
+        <img class="gif" alt="sparkle" src="https://gifcities.org/assets/underconstruction/spin_star.gif" />
+        <img class="gif" alt="cd" src="https://gifcities.org/assets/underconstruction/discoball.gif" />
+      </div>
+      <h1 class="rainbow" style="font-size: clamp(28px,8vw,80px); margin: 8px 0;">COUNTDOWN TO DUBAI</h1>
+      <div class="stars-right">
+        <img class="gif" alt="sparkle" src="https://gifcities.org/assets/underconstruction/spin_star.gif" />
+        <img class="gif" alt="globe" src="https://gifcities.org/assets/underconstruction/spin_globe.gif" />
+      </div>
+      <div class="mini">Target time: <b>September 29, 2025 — 12:25 </b></div>
+    </header>
+
+    <section class="content">
+      <div class="card">
+        <div class="counter" id="countdown">Loading…</div>
+        <div class="units">DAYS • HOURS • MINUTES • SECONDS</div>
+        <div class="ticker" id="status">Preparing sand-approved pixels…</div>
+        <div class="badges">
+          <div class="badge">Best viewed in <b>Netscape</b>™</div>
+          <div class="badge">Now with <span class="blink">extra GIFs</span></div>
+          <div class="badge">Hit Counter: <span id="hits">000001</span></div>
+        </div>
+      </div>
+    </section>
+
+    <marquee scrollamount="7">💾 Bookmark this site • 🐫 Desert vibes • 🏙️ Skyscraper sparkle • 🧃 Free pixel juice</marquee>
+
+    <footer class="footer">
+      <div>© 1997–2025 Totally Real Webmasters Intl. All blinking rights reserved.</div>
+      <div class="mini">If the countdown shows <span class="blink">00:00:00:00</span>, it means: <b>IT'S GO TIME!</b> 🎉</div>
+    </footer>
+  </div>
+
+ <script>
+  const targetDate = new Date(2025, 8, 29, 12, 25, 0); // Sept = month 8
+
+  function tick() {
+    const el = document.getElementById("countdown");
+    if (!el) return; // if element not found, stop
+
+    const now = new Date();
+    let ms = targetDate - now;
+
+    if (ms <= 0) {
+      el.textContent = "00 : 00 : 00 : 00";
+      return;
+    }
+
+    const sec = Math.floor(ms / 1000);
+    const days = Math.floor(sec / 86400);
+    const hours = Math.floor((sec % 86400) / 3600);
+    const mins = Math.floor((sec % 3600) / 60);
+    const s = sec % 60;
+
+    el.textContent =
+      days + " : " +
+      String(hours).padStart(2, "0") + " : " +
+      String(mins).padStart(2, "0") + " : " +
+      String(s).padStart(2, "0");
+  }
+
+  setInterval(tick, 1000);
+  tick();
+</script>
+</body>
+</html>
