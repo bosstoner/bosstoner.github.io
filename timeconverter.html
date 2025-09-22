@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Item Price → Work Time Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0000ee;
+      --neon:#00fefe;
+      --muted:#D3D3D3;
+      --shadow: rgb(218,11,218);
+    }
+    html,body{height:100%;margin:0}
+    body{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background-color:var(--bg);
+      color:var(--neon);
+      font-family: 'Press Start 2P', monospace;
+      text-align:center;
+    }
+
+    .container{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      width:100%;
+      max-width:600px;
+      padding:0 16px;
+    }
+
+    h1{
+      width:90%;
+      margin:0;
+      font-size:1.3em;
+      text-shadow: 2px 2px 0px var(--shadow);
+      line-height: 1.2;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      font-size:0.55em;
+      margin:0.4em 0 0.8em 0;
+      text-shadow: 1px 1px 0px var(--shadow);
+    }
+
+    input[type="number"]{
+      font-family: 'Press Start 2P', monospace;
+      font-size:0.7em;
+      padding:0.9em;
+      border:3px solid var(--neon);
+      background:var(--bg);
+      color:var(--neon);
+      text-align:center;
+      outline:none;
+      width:240px;
+      box-shadow: 2px 2px 0px var(--shadow);
+    }
+    input::placeholder{ color:var(--muted); }
+    /* Remove arrows in Chrome, Safari, Edge, Opera */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Remove arrows in Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    .result{
+      margin-top:1.6em;
+      font-size:0.75em;
+      line-height:1.2;
+      text-shadow: 2px 1px 0px var(--shadow);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+      width:100%;
+      min-height:140px; /* reserve space to prevent jump */
+      opacity:0;
+      transition: opacity 0.5s ease;
+    }
+    .result.visible{ opacity:1; }
+
+    /* HOURS: align vertically in middle */
+    .hours-line{
+      display:flex;
+      justify-content:center;
+      align-items:center; /* middle alignment */
+      gap:10px;
+      padding-bottom: 1%;
+    }
+    .hours-big{
+      font-size:2.1em;
+      color:var(--neon);
+      line-height:1;
+    }
+    .hours-label{
+      font-size:0.7em;
+      color:var(--muted);
+    }
+
+    .highlight{ color:var(--neon); font-weight:700; }
+
+    .eur-line{
+      margin-top:6px;
+      font-size:0.65em;
+      color:var(--muted);
+    }
+    .eur-number{ color:var(--neon); font-weight:700; margin:0 6px; }
+
+    @media screen and (max-width:470px){
+      .hours-big{ font-size:1.9em; }
+      input[type="number"]{ width:200px; }
+      h1{ font-size:1.15em }
+      h1{ width:94%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Item Price to<br>Work Time Calculator</h1>
+    <div class="subtitle">Type a price — results update live</div>
+
+    <input id="price" type="number" inputmode="numeric" placeholder="Enter HUF price" />
+
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    const monthlySalary = 1200000; // HUF
+    const fixedCosts = 400000;     // HUF
+    const workingDaysPerMonth = 20;
+    const hoursPerDay = 8;
+    const disposableIncome = monthlySalary - fixedCosts;
+
+    const priceInput = document.getElementById('price');
+    const output = document.getElementById('output');
+
+    priceInput.addEventListener('input', calculate);
+
+    function calculate(){
+      const price = Number(priceInput.value);
+      if (!price || price <= 0 || !isFinite(price)){
+        output.classList.remove('visible');
+        output.innerHTML = '';
+        return;
+      }
+
+      const hourlyWage = monthlySalary / (workingDaysPerMonth * hoursPerDay);
+      const totalHours = Math.ceil(price / hourlyWage);
+
+      const days = Math.floor(totalHours / hoursPerDay);
+      const hours = totalHours % hoursPerDay;
+
+      let daysHoursText = '';
+      if (days > 0 && hours > 0) {
+        daysHoursText = `${days} day${days>1?'s':''} ${hours} hour${hours>1?'s':''}`;
+      } else if (days > 0) {
+        daysHoursText = `${days} day${days>1?'s':''}`;
+      } else {
+        daysHoursText = `${hours} hour${hours>1?'s':''}`;
+      }
+
+      const percIncome = Math.ceil((price / monthlySalary) * 100);
+      const percDisposable = Math.ceil((price / disposableIncome) * 100);
+      const approxEUR = Math.ceil(price / 400); // 1 EUR ≈ 400 HUF
+
+      output.innerHTML = `
+        <div class="hours-line">
+          <div class="hours-big">${totalHours}</div>
+          <div class="hours-label">hours</div>
+        </div>
+        <div>${daysHoursText}</div>
+        <div><span class="highlight">${percIncome}%</span> of monthly income</div>
+        <div><span class="highlight">${percDisposable}%</span> of disposable income</div>
+        <div class="eur-line">This is approximately <span class="eur-number">${approxEUR}</span> EUR</div>
+      `;
+
+      output.classList.add('visible');
+    }
+  </script>
+</body>
+</html>
