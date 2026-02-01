@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    <link rel="shortcut icon" href="static/favicon.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='progress_info.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lightheader.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <span class="page-name">FILMography COMPilations</span>
+        </div>
+        <div class="progress-icon">
+            <a href="{{ url_for('top50_movies') }}">
+                <span class="material-symbols-outlined">stars</span>
+            </a>
+            <a href="{{ url_for('index') }}">
+                <span class="material-symbols-outlined">nest_secure_alarm</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container-completed">
+        <h1>Achievements</h1>
+        <div class="grid-completed">
+            <ul class="director-completed">
+                {% for director_id, director_name, director_name_url, seen_count, total_movies, seen_percentage, unfilled_percentage in directors_info %}
+                    {% if seen_count == total_movies %}
+                        <li>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Circle_-_black_simple_fullpage.svg/428px-Circle_-_black_simple_fullpage.svg.png"</img>
+                            <a href="{{ url_for('get_director_movies', director_name_url=director_name_url) }}">
+                                <div>{{ director_name }}</div>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <ul class="director-info">
+        {% for director_id, director_name, director_name_url, seen_count, total_movies, seen_percentage, unfilled_percentage in directors_info %}
+            {% if seen_count != total_movies %}
+                <li class="watched">
+                    <a href="{{ url_for('get_director_movies', director_name_url=director_name_url) }}">
+                        <div class="progress-bar">
+                            <div class="bar positive" style="width: {{ seen_percentage }}%;">
+                                <span>{{ director_name }}</span>
+                            </div>
+                            <div class="bar negative" style="width: {{ unfilled_percentage }}%;">
+                              <span>{{ director_name }}</span>
+                            </div>
+                          </div>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>

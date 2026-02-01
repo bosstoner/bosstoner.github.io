@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Blockletter';
+    src: url('fonts/Blockletter.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Blockletter', sans-serif;
+  font-size: xx-large;
+  color: whitesmoke;
+  background: #1b2229;
+  max-width: calc(170px * 5 + 150px);
+  margin: 0 auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  opacity: 0.9;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.progress-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-icon a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+
+@media screen and (max-width: 470px) {
+  .header {
+    font-size: x-large;
+    margin-bottom: 10px;
+  }
+}
