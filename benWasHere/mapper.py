@@ -280,6 +280,12 @@ folium.Marker(
 
 # Romania
 folium.Marker(
+    location=[44.43225, 26.10626],
+    popup="<b>Bucharest</b>",
+    tooltip="Bucharest",
+).add_to(m)
+
+folium.Marker(
     location=[45.77537, 21.2257],
     popup="<b>Timisoara</b>",
     tooltip="Timisoara",
