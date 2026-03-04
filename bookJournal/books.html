@@ -16,21 +16,24 @@
       --max-cols:6;
     }
 
-    body{
-      margin:0;
-      font-family:'Montserrat', sans-serif;
-      background:#f7f7f7;
-      color:#111;
-      overflow-x:hidden;
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #f7f7f7;
+      color: #111;
+      overflow-x: hidden; /* This is already here, but we need to ensure the container is clipped */
+      width: 100vw;
     }
 
-    /* ===== Header ===== */
-    header{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:1.5rem;
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
       padding-bottom: 0;
+      overflow: hidden; /* Add this to clip the sliding carousel */
+      width: 100%;
+      box-sizing: border-box;
     }
     header h1{
       margin:0 0 1rem 0;
@@ -66,18 +69,21 @@
     }
 
     /* ===== Collage ===== */
-    .collage-wrapper{
-      min-height:calc(100vh - 150px);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:1rem;
+    .collage-wrapper {
+      min-height: calc(100vh - 150px);
+      display: flex;
+      justify-content: center; /* Ensures the grid itself is centered */
+      padding: 1rem;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .collage{
-      display:grid;
-      gap:var(--gap);
-      justify-content:center;
-      margin:auto;
+
+    .collage {
+      display: grid;
+      gap: var(--gap);
+      justify-content: center;
+      margin: 0 auto; /* Centers the grid block */
+      max-width: 100%; /* Prevents the grid from pushing wider than the screen */
     }
     .cover{
       width:var(--cell-w);
@@ -135,7 +141,7 @@
     const carousel = document.getElementById('carousel');
     const collage  = document.getElementById('collage');
     const years    = Object.keys(photoData).sort();
-    let activeIndex = 0;
+    let activeIndex = years.indexOf("2026") !== -1 ? years.indexOf("2026") : 0;
 
     function renderCarousel(){
       carousel.innerHTML = '';
