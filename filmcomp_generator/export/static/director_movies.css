@@ -95,7 +95,6 @@ h1 {
 }
 
 .movie-title {
-  display: flex;
   width: 65%;
   text-decoration: none;
 }
