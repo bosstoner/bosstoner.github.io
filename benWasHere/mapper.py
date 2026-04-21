@@ -327,6 +327,24 @@ folium.Marker(
     tooltip="Barcelona",
 ).add_to(m)
 
+folium.Marker(
+    location=[37.8915, -4.7727],
+    popup="<b>Cordoba</b>",
+    tooltip="Cordoba",
+).add_to(m)
+
+folium.Marker(
+    location=[36.7201, -4.4203],
+    popup="<b>Malaga</b>",
+    tooltip="Malaga",
+).add_to(m)
+
+folium.Marker(
+    location=[37.3828, -5.9731],
+    popup="<b>Seville</b>",
+    tooltip="Seville",
+).add_to(m)
+
 
 # Switzerland
 folium.Marker(
