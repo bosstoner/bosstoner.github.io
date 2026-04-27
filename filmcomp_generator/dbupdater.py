@@ -3,7 +3,7 @@ import os
 
 def update_poster_urls():
     # Folder where your posters are stored
-    poster_folder = 'static/posters'
+    poster_folder = 'static/film_comp/posters'
     
     try:
         # Establish local connection

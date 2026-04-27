@@ -93,11 +93,11 @@ def get_director_movies(director_name_url):
 def director_statistics():
     directors_info = get_directors_with_seen_movies()
     directors_info.sort(key=lambda director: director[4] - director[3])
-    return render_template("progress_info.html", directors_info=directors_info)
+    return render_template("progress.html", directors_info=directors_info)
 
 @app.route("/top50.html")
 def top50_movies():
-    return render_template("top50_movies.html")
+    return render_template("top50.html")
 
 
 if __name__ == "__main__":
